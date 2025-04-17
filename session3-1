@@ -1,32 +1,33 @@
+
 #include <iostream>
 using namespace std;
 
-// Function Template with multiple types
-template <typename T, typename U>
-auto Add(T a, U b) -> decltype(a + b) {
-    return a + b;
-}
+// Function Overloading Examples
 
-// Overloaded version for int
 int Add(int a, int b) {
     return a + b;
 }
 
-// Overloaded version for double
+int Add(int a, int b, int c) {
+    return a + b + c;
+}
+
+int Add(int a, int k, int w) {
+    return a + k + w;
+}
+
 double Add(double a, double b) {
     return a + b;
 }
 
 int main() {
-    auto result1 = Add(3, 4);            // Calls int version
-    auto result2 = Add(2.5, 3.5);        // Calls double version
-    auto result3 = Add(5, 2.7);          // Calls template with int + double
-    auto result4 = Add(10.5, 2);         // Calls template with double + int
+    int a1 = Add(4, 6);               // calls Add(int, int)
+    int a2 = Add(3, 4, 5);            // calls Add(int, int, int)
+    double a3 = Add(2.5, 3.5);        // calls Add(double, double)
 
-    cout << "Result 1 (int + int): " << result1 << endl;
-    cout << "Result 2 (double + double): " << result2 << endl;
-    cout << "Result 3 (int + double): " << result3 << endl;
-    cout << "Result 4 (double + int): " << result4 << endl;
+    cout << "a1 = " << a1 << endl;
+    cout << "a2 = " << a2 << endl;
+    cout << "a3 = " << a3 << endl;
 
     return 0;
 }

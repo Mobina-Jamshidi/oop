@@ -105,7 +105,7 @@
 
 | آیتم | نوع | فرمان | توضیح |
 |------|------|--------|--------|
-| بروزرسانی لینوکس | Numeric | `system.run[apt list --upgradable | wc -l]` | آپدیت‌های معوق |
+| بروزرسانی لینوکس | Numeric | `system.run[apt list --upgradable wc -l]` | آپدیت‌های معوق |
 | آپدیت ویندوز | Script | PowerShell Script | بررسی بروزرسانی |
 
 ## 5. Suspicious Behavior

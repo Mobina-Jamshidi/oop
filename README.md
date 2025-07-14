@@ -32,7 +32,7 @@
 | وضعیت VMها | API | Template VMware |
 | استفاده منابع | API | vmware.vm.resource metrics |
 | Snapshotهای قدیمی | Auto-Discovery | Template VMware |
-| رخدادهای vMotion / HA | Event Polling | vCenter Alarm |
+
 
 ---
 

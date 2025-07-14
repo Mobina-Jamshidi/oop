@@ -1,5 +1,5 @@
 
-#  داکیومنت فنی و تخصصی: Best Practices مانیتورینگ زیرساخت و امنیت با Zabbix
+#  داکیومنت فنی  Best Practices مانیتورینگ زیرساخت و امنیت با Zabbix
 
 
 ##  تجهیزات تحت مانیتورینگ
@@ -44,7 +44,7 @@
 | Interfaceها | SNMP + Discovery | FortiGate IF Metrics |
 | تعداد Sessions | SNMP | fgSysSesCount |
 | وضعیت VPN | SNMP | IPsec/SSL Metrics |
-| لاگ‌های UTM و IPS | Syslog یا SNMP | Log Server / ELK |
+
 
 ---
 
@@ -56,7 +56,7 @@
 | Errors / CRC | SNMP | Interface Counters |
 | دما | SNMP | CiscoEnvMon |
 | STP / Routing | SNMP | STP/Routing Tables |
-| Syslog تغییرات | Syslog | به Zabbix Proxy یا ELK |
+
 
 ---
 
@@ -68,7 +68,7 @@
 | منابع مصرفی | Zabbix Agent | Template OS Linux / Windows |
 | وضعیت سرویس‌ها | Agent | service.info[<service_name>,state] |
 | فضای دیسک | Agent + Discovery | vfs.fs.size[*] |
-| لاگ‌ها | Agent log[] | Syslog / Windows Log |
+|
 
 ---
 
@@ -98,22 +98,20 @@
 |------|------|--------|--------|
 | تعداد پورت باز | Numeric | `system.run[ss -tuln | wc -l]` | چک پورت‌های مشکوک |
 | پورت SSH | Net.TCP | `net.tcp.port[22]` | بسته بودن یا هشدار |
-| IPهای مشکوک | Log | تحلیل لاگ فایروال یا IDS | ارتباط خطرناک |
-| VPN | TCP | بررسی وضعیت اتصال VPN (مانند پینگ گیت‌وی داخلی یا مانیتور لاگ OpenVPN/IPsec) | اطمینان از ترافیک امن |
+
+
 
 ## 4. Update & Patch
 
 | آیتم | نوع | فرمان | توضیح |
 |------|------|--------|--------|
 | بروزرسانی لینوکس | Numeric | `system.run[apt list --upgradable | wc -l]` | آپدیت‌های معوق |
-| آنتی‌ویروس فعال؟ | Text | `system.run[systemctl is-active clamav-daemon]` | سلامت امنیتی |
 | آپدیت ویندوز | Script | PowerShell Script | بررسی بروزرسانی |
 
 ## 5. Suspicious Behavior
 
 | آیتم | نوع | فرمان | توضیح |
 |------|------|--------|--------|
-| CPU مشکوک | System.run | `system.run[ps aux --sort=-%cpu | head -n 5]` | تشخیص miner یا باج‌افزار |
 | uptime | Uptime | `system.uptime` | تشخیص ریبوت ناگهانی |
 | دیسک پر | Numeric | `vfs.fs.size[/,pfree]` | تهدید پرفورمنس |
 | زمان سیستم | Text | `system.run[ntpq -pn | head -n 10]` | جلوگیری از اختلاف زمانی |
@@ -127,8 +125,3 @@
 - نظارت روی باز بودن پورت‌ها و ارتباطات مشکوک
 - بررسی وضعیت بروزرسانی سیستم و سلامت AV
 
----
-
-## 📌 نویسنده: تیم فنی زیرساخت  
-**ابزار اصلی:** Zabbix 6.x+, Agent2, SNMPv3, IPMI, Syslog, Custom Scripts  
-**وضعیت:** قابل ارائه برای استفاده در سازمان‌ها و مراکز داده
